@@ -9,7 +9,7 @@ class TicTacToeEEGame(override val rowCount: Int = BASE_SIZE, override val colCo
     private val board: Board<Player> = TicTacToeEEBoard(rowCount, colCount)
 
     override val gameState: GameState
-        get() = GameState(currentPlayer)
+        get() = GameState(currentPlayer, if (board.isFull) PlayingState.OVER else PlayingState.PLAYING)
 
     override fun play(row: Int, col: Int) = if (board.playOnSquare(row, col, currentPlayer)) {
         updateCurrentPlayer()
