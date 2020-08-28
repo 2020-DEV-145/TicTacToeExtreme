@@ -31,9 +31,11 @@ internal class TicTacToeEEGameTest {
     fun `Players cannot play on a played position`() {
         val game: TicTacToeEE = TicTacToeEEGame()
         assert(game.gameState.currentPlayer == Player.X)
-        game.play(0, 0)
+        assert(game.play(0, 0))
         assert(game.gameState.currentPlayer == Player.O)
-        game.play(0, 0)
+        assert(!game.play(0, 0))
         assert(game.gameState.currentPlayer == Player.O)
+        assert(game.play(0, 1))
+        assert(game.gameState.currentPlayer == Player.X)
     }
 }

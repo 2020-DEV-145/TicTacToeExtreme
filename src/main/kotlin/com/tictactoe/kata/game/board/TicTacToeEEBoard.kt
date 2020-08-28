@@ -13,4 +13,7 @@ class TicTacToeEEBoard(override val rowCount: Int, override val colCount: Int) :
             } else {
                 false
             }
+
+    override val isFull: Boolean
+        get() = content.all { row -> row.all { it.isOccupied } }
 }
