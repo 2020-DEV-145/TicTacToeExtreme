@@ -1,8 +1,5 @@
-package com.tictactoe.kata
+package com.tictactoe.kata.game
 
-import com.tictactoe.kata.game.Player
-import com.tictactoe.kata.game.TicTacToeEE
-import com.tictactoe.kata.game.TicTacToeEEGame
 import org.junit.jupiter.api.Test
 
 internal class TicTacToeEEGameTest {
@@ -16,7 +13,7 @@ internal class TicTacToeEEGameTest {
     @Test
     fun `O plays seconds`() {
         val game: TicTacToeEE = TicTacToeEEGame()
-        game.play()
+        game.play(0, 0)
         assert(game.gameState.currentPlayer == Player.O)
     }
 
@@ -24,9 +21,19 @@ internal class TicTacToeEEGameTest {
     fun `X-O alternate turns`() {
         val game: TicTacToeEE = TicTacToeEEGame()
         assert(game.gameState.currentPlayer == Player.X)
-        game.play()
+        game.play(0, 0)
         assert(game.gameState.currentPlayer == Player.O)
-        game.play()
+        game.play(0, 1)
         assert(game.gameState.currentPlayer == Player.X)
+    }
+
+    @Test
+    fun `Players cannot play on a played position`() {
+        val game: TicTacToeEE = TicTacToeEEGame()
+        assert(game.gameState.currentPlayer == Player.X)
+        game.play(0, 0)
+        assert(game.gameState.currentPlayer == Player.O)
+        game.play(0, 0)
+        assert(game.gameState.currentPlayer == Player.O)
     }
 }
