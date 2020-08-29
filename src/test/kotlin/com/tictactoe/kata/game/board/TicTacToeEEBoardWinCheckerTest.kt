@@ -65,7 +65,7 @@ internal class TicTacToeEEBoardWinCheckerTest {
     }
 
     @Test
-    fun `Player wins with N pieces in a row - all orientation`() {
+    fun `Player wins with N pieces in a row -   all orientation`() {
         val winChecker = TicTacToeEEBoardWinChecker(3)
         val content = arrayOf(
                 arrayOf(Square(Player.X), Square(Player.X), Square(Player.X)),
