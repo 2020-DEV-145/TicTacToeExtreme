@@ -4,7 +4,7 @@ import com.tictactoe.kata.game.Player
 
 class TicTacToeEEBoard(override val rowCount: Int, override val colCount: Int, piecesInARowToWin: Int) : Board<Player> {
 
-    private val content = Array(rowCount) { Array(colCount) { Square<Player>() } }
+    private val content = List(rowCount) { List(colCount) { Square<Player>() } }
     private val winChecker = TicTacToeEEBoardWinChecker(piecesInARowToWin)
     private var gameWinner: Player? = null
 
@@ -26,5 +26,7 @@ class TicTacToeEEBoard(override val rowCount: Int, override val colCount: Int, p
     override val isFull: Boolean
         get() = content.all { row -> row.all { it.isOccupied } }
 
-
+    override fun getBoardRepresentation(): List<List<String>> = content.map { row ->
+        row.map { if (!it.isOccupied) "" else it.occupiedBy.toString() }
+    }
 }

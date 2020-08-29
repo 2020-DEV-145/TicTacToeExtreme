@@ -6,4 +6,5 @@ interface Board<T> {
     val isFull: Boolean
     val winner: T?
     fun playOnSquare(row: Int, col: Int, piece: T): Boolean
+    fun getBoardRepresentation(): List<List<String>>
 }

@@ -4,7 +4,7 @@ import com.tictactoe.kata.game.Player
 
 class TicTacToeEEBoardWinChecker(private val occupiedSquareInARowToWin: Int) {
 
-    fun checkForWinner(content: Array<Array<Square<Player>>>): Player? {
+    fun checkForWinner(content: List<List<Square<Player>>>): Player? {
         content.forEachIndexed { rowIndex, columns ->
             columns.forEachIndexed { colIndex, _ ->
                 checkSquare(content, rowIndex, colIndex)?.let {
@@ -15,7 +15,7 @@ class TicTacToeEEBoardWinChecker(private val occupiedSquareInARowToWin: Int) {
         return null
     }
 
-    fun checkSquare(content: Array<Array<Square<Player>>>, row: Int, col: Int): Player? {
+    fun checkSquare(content: List<List<Square<Player>>>, row: Int, col: Int): Player? {
         var victoryState = checkRow(content, row, col)
         if (victoryState != null) return victoryState
         victoryState = checkColumns(content, row, col)
@@ -26,7 +26,7 @@ class TicTacToeEEBoardWinChecker(private val occupiedSquareInARowToWin: Int) {
     }
 
 
-    fun checkRow(content: Array<Array<Square<Player>>>, row: Int, col: Int): Player? {
+    fun checkRow(content: List<List<Square<Player>>>, row: Int, col: Int): Player? {
         if (isInBoardRange(content, row, col, 0, occupiedSquareInARowToWin)) {
             val firstSquare = content[row][col]
             if (!firstSquare.isOccupied) return null
@@ -38,7 +38,7 @@ class TicTacToeEEBoardWinChecker(private val occupiedSquareInARowToWin: Int) {
         return null
     }
 
-    fun checkColumns(content: Array<Array<Square<Player>>>, row: Int, col: Int): Player? {
+    fun checkColumns(content: List<List<Square<Player>>>, row: Int, col: Int): Player? {
         if (isInBoardRange(content, row, col, occupiedSquareInARowToWin, 0)) {
             val firstSquare = content[row][col]
             if (!firstSquare.isOccupied) return null
@@ -50,7 +50,7 @@ class TicTacToeEEBoardWinChecker(private val occupiedSquareInARowToWin: Int) {
         return null
     }
 
-    fun checkRightDiagonals(content: Array<Array<Square<Player>>>, row: Int, col: Int): Player? {
+    fun checkRightDiagonals(content: List<List<Square<Player>>>, row: Int, col: Int): Player? {
         if (isInBoardRange(content, row, col, occupiedSquareInARowToWin, occupiedSquareInARowToWin)) {
             val firstSquare = content[row][col]
             if (!firstSquare.isOccupied) return null
@@ -62,7 +62,7 @@ class TicTacToeEEBoardWinChecker(private val occupiedSquareInARowToWin: Int) {
         return null
     }
 
-    fun checkLeftDiagonals(content: Array<Array<Square<Player>>>, row: Int, col: Int): Player? {
+    fun checkLeftDiagonals(content: List<List<Square<Player>>>, row: Int, col: Int): Player? {
         if (isInBoardRange(content, row, col, occupiedSquareInARowToWin, -occupiedSquareInARowToWin)) {
             val firstSquare = content[row][col]
             if (!firstSquare.isOccupied) return null
@@ -74,6 +74,6 @@ class TicTacToeEEBoardWinChecker(private val occupiedSquareInARowToWin: Int) {
         return null
     }
 
-    private fun isInBoardRange(content: Array<Array<Square<Player>>>, row: Int, col: Int, rowDelta: Int, colDelta: Int) =
+    private fun isInBoardRange(content: List<List<Square<Player>>>, row: Int, col: Int, rowDelta: Int, colDelta: Int) =
             content.size >= (row + rowDelta) && content[row].size >= col + colDelta && row + 1 + rowDelta >= 0 && col + 1 + colDelta >= 0
 }

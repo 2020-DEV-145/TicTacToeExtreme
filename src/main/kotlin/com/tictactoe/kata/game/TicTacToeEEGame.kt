@@ -14,7 +14,8 @@ class TicTacToeEEGame(
     override val gameState: GameState
         get() = GameState(currentPlayer,
                 if (board.isFull || board.winner != null) PlayingState.OVER else PlayingState.PLAYING,
-                board.winner)
+                board.winner,
+                board.getBoardRepresentation())
     var currentPlayer: Player = Player.X
 
 
