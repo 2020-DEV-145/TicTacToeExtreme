@@ -1,6 +1,6 @@
 package com.tictactoe.kata.app
 
-import com.tictactoe.kata.view.MainView
+import com.tictactoe.kata.app.startGameScreen.StartGameView
 import tornadofx.App
 
-class TicTacToeExtremeEdition : App(MainView::class, Styles::class)
+class TicTacToeExtremeEdition : App(StartGameView::class, Styles::class)
