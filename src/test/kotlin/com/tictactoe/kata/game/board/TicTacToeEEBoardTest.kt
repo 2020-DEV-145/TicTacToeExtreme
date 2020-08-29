@@ -8,14 +8,14 @@ internal class TicTacToeEEBoardTest {
 
     @Test
     fun `The Tic Tac Toe Board cannot contains 2 pieces on the same square`() {
-        val board: Board<Player> = TicTacToeEEBoard(3, 3)
+        val board: Board<Player> = TicTacToeEEBoard(3, 3, 3)
         assert(board.playOnSquare(0, 0, Player.X))
         assert(!board.playOnSquare(0, 0, Player.X))
     }
 
     @Test
     fun `The Tic Tac Toe Board is full when all squares are played`() {
-        val board: Board<Player> = TicTacToeEEBoard(2, 2)
+        val board: Board<Player> = TicTacToeEEBoard(2, 2, 3)
         assert(board.playOnSquare(0, 0, Player.X))
         assert(board.playOnSquare(0, 1, Player.X))
         assert(board.playOnSquare(1, 0, Player.X))

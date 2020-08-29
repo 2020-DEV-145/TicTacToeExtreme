@@ -49,4 +49,16 @@ internal class TicTacToeEEGameTest {
         game.play(1, 1)
         assert(game.gameState.state == PlayingState.OVER)
     }
+
+    @Test
+    fun `Players alternate placing X-O until someone wins`() {
+        val game: TicTacToeEE = TicTacToeEEGame(3, 3)
+        game.play(0, 0)
+        game.play(1, 0)
+        game.play(0, 1)
+        game.play(1, 1)
+        assert(game.gameState.state == PlayingState.PLAYING)
+        game.play(0, 2)
+        assert(game.gameState.state == PlayingState.OVER)
+    }
 }
