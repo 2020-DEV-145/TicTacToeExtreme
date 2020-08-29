@@ -1,6 +1,7 @@
 package com.tictactoe.kata.game.board
 
 import com.tictactoe.kata.game.Player
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 internal class TicTacToeEEBoardWinCheckerTest {
@@ -14,10 +15,10 @@ internal class TicTacToeEEBoardWinCheckerTest {
                 listOf(Square(Player.O), Square(Player.O), Square(Player.O)
                 ))
 
-        assert(winChecker.checkRow(content, 0, 0) == null)
-        assert(winChecker.checkRow(content, 1, 0) == Player.X)
-        assert(winChecker.checkRow(content, 2, 0) == Player.O)
-        assert(winChecker.checkRow(content, 1, 1) == null)
+        assertTrue(winChecker.checkRow(content, 0, 0) == null)
+        assertTrue(winChecker.checkRow(content, 1, 0) == Player.X)
+        assertTrue(winChecker.checkRow(content, 2, 0) == Player.O)
+        assertTrue(winChecker.checkRow(content, 1, 1) == null)
     }
 
     @Test
@@ -29,12 +30,12 @@ internal class TicTacToeEEBoardWinCheckerTest {
                 listOf(Square(Player.X), Square(Player.O), Square(Player.O)
                 ))
 
-        assert(winChecker.checkColumns(content, 0, 0) == Player.X)
-        assert(winChecker.checkColumns(content, 0, 1) == Player.O)
-        assert(winChecker.checkColumns(content, 0, 2) == null)
-        assert(winChecker.checkColumns(content, 1, 0) == null)
-        assert(winChecker.checkColumns(content, 2, 0) == null)
-        assert(winChecker.checkColumns(content, 1, 1) == null)
+        assertTrue(winChecker.checkColumns(content, 0, 0) == Player.X)
+        assertTrue(winChecker.checkColumns(content, 0, 1) == Player.O)
+        assertTrue(winChecker.checkColumns(content, 0, 2) == null)
+        assertTrue(winChecker.checkColumns(content, 1, 0) == null)
+        assertTrue(winChecker.checkColumns(content, 2, 0) == null)
+        assertTrue(winChecker.checkColumns(content, 1, 1) == null)
     }
 
     @Test
@@ -46,8 +47,8 @@ internal class TicTacToeEEBoardWinCheckerTest {
                 listOf(Square(Player.X), Square(Player.O), Square(Player.X)
                 ))
 
-        assert(winChecker.checkRightDiagonals(content, 0, 0) == Player.X)
-        assert(winChecker.checkRightDiagonals(content, 0, 1) == null)
+        assertTrue(winChecker.checkRightDiagonals(content, 0, 0) == Player.X)
+        assertTrue(winChecker.checkRightDiagonals(content, 0, 1) == null)
     }
 
     @Test
@@ -59,9 +60,9 @@ internal class TicTacToeEEBoardWinCheckerTest {
                 listOf(Square(Player.O), Square(Player.O), Square(Player.X)
                 ))
 
-        assert(winChecker.checkLeftDiagonals(content, 0, 0) == null)
-        assert(winChecker.checkLeftDiagonals(content, 2, 0) == null)
-        assert(winChecker.checkLeftDiagonals(content, 0, 2) == Player.O)
+        assertTrue(winChecker.checkLeftDiagonals(content, 0, 0) == null)
+        assertTrue(winChecker.checkLeftDiagonals(content, 2, 0) == null)
+        assertTrue(winChecker.checkLeftDiagonals(content, 0, 2) == Player.O)
     }
 
     @Test
@@ -73,40 +74,40 @@ internal class TicTacToeEEBoardWinCheckerTest {
                 listOf(Square(Player.O), Square(Player.O), Square(Player.O)
                 ))
 
-        assert(winChecker.checkSquare(content, 0, 0) == Player.X)
-        assert(winChecker.checkSquare(content, 2, 0) == Player.O)
-        assert(winChecker.checkSquare(content, 0, 2) == null)
+        assertTrue(winChecker.checkSquare(content, 0, 0) == Player.X)
+        assertTrue(winChecker.checkSquare(content, 2, 0) == Player.O)
+        assertTrue(winChecker.checkSquare(content, 0, 2) == null)
     }
 
     @Test
     fun `Player wins with N pieces in a row - all mixed`() {
         val winChecker = TicTacToeEEBoardWinChecker(3)
-        assert(winChecker.checkForWinner(listOf(
+        assertTrue(winChecker.checkForWinner(listOf(
                 listOf(Square(Player.X), Square(), Square()),
                 listOf(Square(), Square(Player.X), Square()),
                 listOf(Square(), Square(), Square())
         )) == null)
 
 
-        assert(winChecker.checkForWinner(listOf(
+        assertTrue(winChecker.checkForWinner(listOf(
                 listOf(Square(Player.X), Square(), Square()),
                 listOf(Square(), Square(Player.X), Square()),
                 listOf(Square(), Square(), Square(Player.X))
         )) == Player.X)
 
-        assert(winChecker.checkForWinner(listOf(
+        assertTrue(winChecker.checkForWinner(listOf(
                 listOf(Square(), Square(), Square(Player.X)),
                 listOf(Square(), Square(), Square(Player.X)),
                 listOf(Square(), Square(), Square(Player.X))
         )) == Player.X)
 
-        assert(winChecker.checkForWinner(listOf(
+        assertTrue(winChecker.checkForWinner(listOf(
                 listOf(Square(), Square(), Square(Player.X)),
                 listOf(Square(), Square(Player.X), Square()),
                 listOf(Square(Player.X), Square(), Square())
         )) == Player.X)
 
-        assert(winChecker.checkForWinner(listOf(
+        assertTrue(winChecker.checkForWinner(listOf(
                 listOf(Square(), Square(), Square(Player.X)),
                 listOf(Square(), Square(), Square()),
                 listOf(Square(Player.X), Square(), Square())
@@ -116,27 +117,27 @@ internal class TicTacToeEEBoardWinCheckerTest {
     @Test
     fun `Player needs the right total of pieces in a row`() {
         val winChecker = TicTacToeEEBoardWinChecker(4)
-        assert(winChecker.checkForWinner(listOf(
+        assertTrue(winChecker.checkForWinner(listOf(
                 listOf(Square(Player.X), Square(), Square()),
                 listOf(Square(Player.X), Square(), Square()),
                 listOf(Square(Player.X), Square(), Square()),
                 listOf(Square(), Square(), Square())
         )) == null)
-        assert(winChecker.checkForWinner(listOf(
+        assertTrue(winChecker.checkForWinner(listOf(
                 listOf(Square(Player.X), Square(), Square()),
                 listOf(Square(Player.X), Square(), Square()),
                 listOf(Square(Player.X), Square(), Square()),
                 listOf(Square(Player.X), Square(), Square())
         )) == Player.X)
 
-        assert(winChecker.checkForWinner(listOf(
+        assertTrue(winChecker.checkForWinner(listOf(
                 listOf(Square(), Square(), Square(), Square()),
                 listOf(Square(), Square(), Square(), Square()),
                 listOf(Square(), Square(), Square(), Square()),
                 listOf(Square(Player.X), Square(Player.X), Square(), Square(Player.X))
         )) == null)
 
-        assert(winChecker.checkForWinner(listOf(
+        assertTrue(winChecker.checkForWinner(listOf(
                 listOf(Square(), Square(), Square(), Square()),
                 listOf(Square(), Square(), Square(), Square()),
                 listOf(Square(), Square(), Square(), Square()),
