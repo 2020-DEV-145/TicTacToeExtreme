@@ -36,6 +36,7 @@ dependencies {
 
     testCompile "org.junit.jupiter:junit-jupiter-api:$junit_version"
     testRuntime "org.junit.jupiter:junit-jupiter-engine:$junit_version"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.7"
 }
 
 mainClassName = "com.tictactoe.kata.app.TicTacToeExtremeEdition"
