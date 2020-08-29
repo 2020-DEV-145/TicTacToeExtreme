@@ -2,6 +2,7 @@ package com.tictactoe.kata.app.gameScreen
 
 import com.tictactoe.kata.app.Styles
 import io.reactivex.disposables.Disposable
+import javafx.scene.control.Label
 import javafx.scene.layout.GridPane
 import tornadofx.*
 
@@ -10,9 +11,10 @@ class GameView : View("Tic Tac Toe - Extreme Edition"), SquareView.Listener {
     private val vm: GameViewModel by inject()
     private lateinit var gridPane: GridPane
     private var gameStateDisposable: Disposable? = null
+    private lateinit var mainLabel: Label
 
     override val root = vbox {
-        label(title) {
+        mainLabel = label(title) {
             addClass(Styles.heading)
         }
         gridPane = gridpane { }
@@ -38,6 +40,10 @@ class GameView : View("Tic Tac Toe - Extreme Edition"), SquareView.Listener {
     }
 
     private fun updateView(gameState: GameViewState) {
+        mainLabel.text = when {
+            gameState.isOver -> if (gameState.isDraw) "DRAW!" else gameState.winner + " WON!"
+            else -> gameState.currentPlayer + " TURN"
+        }
         gridPane.clear()
         gameState.board.forEachIndexed { colIndex, row ->
             gridPane.run {

@@ -18,7 +18,6 @@ class TicTacToeEEGame(
                 board.getBoardRepresentation())
     var currentPlayer: Player = Player.X
 
-
     override fun play(row: Int, col: Int) = if (board.playOnSquare(row, col, currentPlayer)) {
         updateCurrentPlayer()
         true

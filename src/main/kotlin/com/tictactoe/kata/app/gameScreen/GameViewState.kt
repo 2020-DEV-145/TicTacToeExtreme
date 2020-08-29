@@ -9,6 +9,9 @@ data class GameViewState(
     val isDraw: Boolean
         get() = gameState == GameState.OVER && winner.isBlank()
 
+    val isOver: Boolean
+        get() = gameState == GameState.OVER
+
     enum class GameState {
         PLAYING,
         OVER
