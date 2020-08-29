@@ -22,6 +22,19 @@ For me, coding is about the *love for the code* but also *the love for what you 
 - If a player is able to draw **N** X’s or **N** O’s in a row, that player wins.
 - If **all squares** are filled and neither player has **N** in a row, the game is a draw.
 
+## How to run
+Mac - Linux:
+```
+./gradlew run
+./gradlew build
+./gradlew test
+```
+Windows
+```
+gradlew clean run
+gradlew clean build
+gradlew clean test
+```
 ## Sidenotes
 
 I chosed to do the project in pure Kotlin rather than Android/Kotlin because I wanted to learn more about it without the Android Framework
