@@ -1,6 +1,6 @@
-package com.tictactoe.kata.game.board
+package com.tictactoe.kata.domain.board
 
-import com.tictactoe.kata.game.Player
+import com.tictactoe.kata.domain.Player
 
 class TicTacToeEEBoardWinChecker(private val occupiedSquareInARowToWin: Int) {
 

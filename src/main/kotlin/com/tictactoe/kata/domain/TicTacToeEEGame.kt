@@ -1,7 +1,7 @@
-package com.tictactoe.kata.game
+package com.tictactoe.kata.domain
 
-import com.tictactoe.kata.game.board.Board
-import com.tictactoe.kata.game.board.TicTacToeEEBoard
+import com.tictactoe.kata.domain.board.Board
+import com.tictactoe.kata.domain.board.TicTacToeEEBoard
 
 class TicTacToeEEGame(
         override val rowCount: Int = BASE_SIZE,
@@ -12,10 +12,12 @@ class TicTacToeEEGame(
     private val board: Board<Player> = TicTacToeEEBoard(rowCount, colCount, piecesInARowToWin)
 
     override val gameState: GameState
-        get() = GameState(currentPlayer,
-                if (board.isFull || board.winner != null) PlayingState.OVER else PlayingState.PLAYING,
-                board.winner,
-                board.getBoardRepresentation())
+        get() = GameState(
+                currentPlayer = currentPlayer,
+                state = if (board.isFull || board.winner != null) PlayingState.OVER else PlayingState.PLAYING,
+                winner = board.winner,
+                boardState = board.getBoardRepresentation()
+        )
     var currentPlayer: Player = Player.X
 
     override fun play(row: Int, col: Int) = if (board.playOnSquare(row, col, currentPlayer)) {

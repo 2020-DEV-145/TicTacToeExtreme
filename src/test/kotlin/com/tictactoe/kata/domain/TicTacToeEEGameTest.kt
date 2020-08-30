@@ -1,4 +1,4 @@
-package com.tictactoe.kata.game
+package com.tictactoe.kata.domain
 
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test

@@ -9,8 +9,8 @@ import tornadofx.*
 class GameView : View("Tic Tac Toe - Extreme Edition"), SquareView.Listener {
     override val scope = super.scope as GameScope
     private val vm: GameViewModel by inject()
+    private lateinit var gameStateDisposable: Disposable
     private lateinit var gridPane: GridPane
-    private var gameStateDisposable: Disposable? = null
     private lateinit var mainLabel: Label
 
     override val root = vbox {
@@ -36,14 +36,22 @@ class GameView : View("Tic Tac Toe - Extreme Edition"), SquareView.Listener {
 
     override fun onDelete() {
         super.onDelete()
-        gameStateDisposable?.dispose()
+        gameStateDisposable.dispose()
     }
 
     private fun updateView(gameState: GameViewState) {
+        updateLabel(gameState)
+        updateGrid(gameState)
+    }
+
+    private fun updateLabel(gameState: GameViewState) {
         mainLabel.text = when {
-            gameState.isOver -> if (gameState.isDraw) "DRAW!" else gameState.winner + " WON!"
-            else -> gameState.currentPlayer + " TURN"
+            gameState.isOver -> if (gameState.isDraw) "DRAW!" else "${gameState.winner}  WON!"
+            else -> "${gameState.currentPlayer} TURN"
         }
+    }
+
+    private fun updateGrid(gameState: GameViewState) {
         gridPane.clear()
         gameState.board.forEachIndexed { colIndex, row ->
             gridPane.run {

@@ -1,4 +1,4 @@
-package com.tictactoe.kata.game.board
+package com.tictactoe.kata.domain.board
 
 interface Board<T> {
     val rowCount: Int

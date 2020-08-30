@@ -1,8 +1,8 @@
 package com.tictactoe.kata.app.gameScreen
 
-import com.tictactoe.kata.game.PlayingState
-import com.tictactoe.kata.game.TicTacToeEE
-import com.tictactoe.kata.game.TicTacToeEEGame
+import com.tictactoe.kata.domain.PlayingState
+import com.tictactoe.kata.domain.TicTacToeEE
+import com.tictactoe.kata.domain.TicTacToeEEGame
 import io.reactivex.subjects.BehaviorSubject
 
 import io.reactivex.subjects.Subject
@@ -13,17 +13,19 @@ class GameViewModel : ViewModel() {
     private lateinit var game: TicTacToeEE
     val gameState: Subject<GameViewState> = BehaviorSubject.create<GameViewState>()
 
-    fun initializeGame(boardSize: Int, piecesInARowToWin: Int) {
-        game = TicTacToeEEGame(boardSize, boardSize, piecesInARowToWin)
-        updateViewGameState()
-    }
+    fun initializeGame(boardSize: Int, piecesInARowToWin: Int) =
+            TicTacToeEEGame(boardSize, boardSize, piecesInARowToWin).also {
+                game = it
+                updateViewGameState()
+            }
+
 
     private fun updateViewGameState() {
         gameState.onNext(with(game.gameState) {
             GameViewState(
-                    currentPlayer.toString(),
-                    boardState,
-                    when (state) {
+                    currentPlayer = currentPlayer.toString(),
+                    board = boardState,
+                    gameState = when (state) {
                         PlayingState.PLAYING -> GameViewState.GameState.PLAYING
                         PlayingState.OVER -> GameViewState.GameState.OVER
                     },
@@ -32,8 +34,7 @@ class GameViewModel : ViewModel() {
         })
     }
 
-    fun play(row: Int, col: Int) {
-        game.play(row, col)
+    fun play(row: Int, col: Int) = game.play(row, col).also {
         updateViewGameState()
     }
 }

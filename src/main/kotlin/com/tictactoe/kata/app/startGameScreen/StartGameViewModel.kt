@@ -5,11 +5,16 @@ import com.tictactoe.kata.app.gameScreen.GameView
 import tornadofx.*
 
 class StartGameViewModel : ViewModel() {
-    var boardSize = 3
-    var piecesInARowToWin = 3
+    var boardSize = BASE_BOARD_SIZE
+    var piecesInARowToWin = BASE_PIECES_IN_A_ROW_TO_WIN
 
-    fun startGame(view: View) {
-        val boardView = find<GameView>(GameScope(boardSize, piecesInARowToWin))
-        view.replaceWith(boardView)
+    fun startGame(view: View) =
+            find<GameView>(GameScope(boardSize, piecesInARowToWin)).also {
+                view.replaceWith(it)
+            }
+
+    companion object {
+        const val BASE_BOARD_SIZE = 3
+        const val BASE_PIECES_IN_A_ROW_TO_WIN = 3
     }
 }

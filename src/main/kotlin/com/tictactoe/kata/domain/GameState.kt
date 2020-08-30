@@ -1,4 +1,4 @@
-package com.tictactoe.kata.game
+package com.tictactoe.kata.domain
 
 data class GameState(
         val currentPlayer: Player,

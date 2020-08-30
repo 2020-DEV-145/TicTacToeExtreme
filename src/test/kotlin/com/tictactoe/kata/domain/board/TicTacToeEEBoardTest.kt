@@ -1,6 +1,6 @@
-package com.tictactoe.kata.game.board
+package com.tictactoe.kata.domain.board
 
-import com.tictactoe.kata.game.Player
+import com.tictactoe.kata.domain.Player
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 

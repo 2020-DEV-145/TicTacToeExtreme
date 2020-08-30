@@ -1,18 +1,22 @@
-package com.tictactoe.kata.game.board
+package com.tictactoe.kata.domain.board
 
-import com.tictactoe.kata.game.Player
+import com.tictactoe.kata.domain.Player
 
-class TicTacToeEEBoard(override val rowCount: Int, override val colCount: Int, piecesInARowToWin: Int) : Board<Player> {
+class TicTacToeEEBoard(
+        override val rowCount: Int,
+        override val colCount: Int,
+        piecesInARowToWin: Int
+) : Board<Player> {
 
     private val content = List(rowCount) { List(colCount) { Square<Player>() } }
     private val winChecker = TicTacToeEEBoardWinChecker(piecesInARowToWin)
-    private var gameWinner: Player? = null
+    private var _gameWinner: Player? = null
 
     override val winner
-        get() = if (gameWinner == null) winChecker.checkForWinner(content)?.also {
-            gameWinner = it
+        get() = if (_gameWinner == null) winChecker.checkForWinner(content)?.also {
+            _gameWinner = it
         } else {
-            gameWinner
+            _gameWinner
         }
 
     override fun playOnSquare(row: Int, col: Int, piece: Player): Boolean =
